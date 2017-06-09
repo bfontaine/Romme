@@ -29,3 +29,9 @@ print("%s -> %s" % (rd, rd.to_date()))
 rd2 = RepublicanDate.from_gregorian(1796, 9, 22)
 print(rd == rd2)  # True
 ```
+
+## Features
+
+- [x] Convert from French Republican to Gregorian calendar
+- [ ] Convert from Gregorian to French Republican calendar
+- [ ] Parse French Republican dates (e.g. `"3 prairial, an VIII"`)
