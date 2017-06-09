@@ -9,9 +9,9 @@ after [Gilbert Romme][gilbert], who developed the former.
 [gilbert]: https://en.wikipedia.org/wiki/Gilbert_Romme
 
 The French Republican calendar was briefly used in France between 1792 and
-1806. The population didn’t widely use it, but official documents did; We can
+1806. The population didn’t widely use it, but official documents did; we can
 see it used in some [open datasets][parisdata]. Dealing with two different
-calendars is a pain so this library allows you to translate from one to
+calendars is a pain, so this library allows you to translate from one to
 another.
 
 [parisdata]: https://opendata.paris.fr/explore/dataset/voiesactuellesparis2012/information/
@@ -23,8 +23,7 @@ from romme import RepublicanDate
 
 rd = RepublicanDate(5, 1, 1)  # first day of the year V
 
-print("%s -> %s" % (rd, rd.to_date()))
-# output: 1 vendémiaire, an V -> 1796-09-22
+rd.to_date()  # gives you a datetime.date object for the 1796/09/22
 
 rd2 = RepublicanDate.from_gregorian(1796, 9, 22)
 print(rd == rd2)  # True
