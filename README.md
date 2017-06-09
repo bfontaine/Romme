@@ -26,4 +26,6 @@ rd = RepublicanDate(5, 1, 1)  # first day of the year V
 print("%s -> %s" % (rd, rd.to_date()))
 # output: 1 vendémiaire, an V -> 1796-09-22
 
+rd2 = RepublicanDate.from_gregorian(1796, 9, 22)
+print(rd == rd2)  # True
 ```

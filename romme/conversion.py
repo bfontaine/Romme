@@ -12,6 +12,10 @@ _FRENCH_JDN_OFFSET = 2375474
 def _republican_ymd_to_julian_day(y, m, d):
     return (y * _DAYS_PER_4_YEARS) / 4 + (m-1) * 30 + d + _FRENCH_JDN_OFFSET
 
+def _julian_day_to_republican_ymd(jd):
+    raise NotImplementedError()
+
+
 def republican_to_gregorian(y, m, d):
     """
     Take a year (y>=1), a month (1<=m<=13), and a day (1<=d<=30) that represent
@@ -20,3 +24,12 @@ def republican_to_gregorian(y, m, d):
     """
     y, m, d, _ = jdcal.jd2gcal(0, _republican_ymd_to_julian_day(y, m, d))
     return (y, m, d)
+
+
+def gregorian_to_republican(y, m, d):
+    """
+    Take a year (y>=1792), a month (1<=m<=12), and a day (1<=d<=31) that
+    represent a day from the Gregorian calendar and return a tuple that
+    represent the same date in the French Republican calendar.
+    """
+    raise NotImplementedError()

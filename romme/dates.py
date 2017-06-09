@@ -2,7 +2,7 @@
 
 from datetime import date
 
-from romme.conversion import republican_to_gregorian
+from romme.conversion import republican_to_gregorian, gregorian_to_republican
 from romme.names import republican_day_string
 
 __all__ = ["RepublicanDate"]
@@ -20,6 +20,14 @@ class RepublicanDate:
     """
     Representation of a date in the French Republican calendar.
     """
+
+    @classmethod
+    def from_gregorian(cls, year, month, day):
+        """
+        Create a ``RepublicanDate`` from the given Gregorian year/month/day.
+        ``from_gregorian(2017, 1, 1)`` converts the 1st of January, 2017.
+        """
+        return cls(*gregorian_to_republican(year, month, day))
 
     def __init__(self, year, month, day):
         """
@@ -40,12 +48,23 @@ class RepublicanDate:
         self._ymd = (self.year, self.month, self.day)
 
     def is_sanscullotide(self):
-        return self.month == 12
+        """
+        Test if this date is a sans-culottide day.
+        """
+        return self.month == 13
 
     def to_date(self):
-        return date(*self.to_gregorian_ymd())
+        """
+        Return a ``datetime.date`` object for this date.
+        """
+        return date(*self.to_gregorian())
 
-    def to_gregorian_ymd(self):
+    def to_gregorian(self):
+        """
+        Return a ``(year, month, day)`` tuple that represents the date in the
+        Gregorian calendar. The 1st of January, 2017 is represented as
+        ``(2017, 1, 1)``.
+        """
         return republican_to_gregorian(*self._ymd)
 
     def __str__(self):
