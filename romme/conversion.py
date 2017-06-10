@@ -15,19 +15,15 @@ def _republican_ymd_to_julian_day(y, m, d):
     Convert a ``(year, month, day)`` tuple of the French Republican calendar
     into a Julian day number.
     """
-    return (y * _DAYS_PER_4_YEARS) / 4 + (m-1) * _DAYS_PER_MONTH + d + _FRENCH_JDN_OFFSET
+    yd = int((y * _DAYS_PER_4_YEARS) / 4)
+    return yd + (m-1) * _DAYS_PER_MONTH + d + _FRENCH_JDN_OFFSET
 
-# FIXME this is off for the last day of each leap year.
-#
-#
-#  3/13/6 -> JD = 1461.75 + offset -> 4/1/1
-#  4/1/1  -> JD = 1462.00 + offset -> 4/1/1
 def _julian_day_to_republican_ymd(jd):
     """
     Convert a Julian day number to a ``(year, month, day)`` tuple representing
     the date in the French Republican calendar.
     """
-    days4 = (jd - _FRENCH_JDN_OFFSET) * 4 - 1
+    days4 = (int(jd) - _FRENCH_JDN_OFFSET) * 4 - 1
 
     y, day_of_year = divmod(days4, _DAYS_PER_4_YEARS)
 
@@ -58,5 +54,7 @@ def gregorian_to_republican(y, m, d):
     represent a day from the Gregorian calendar and return a tuple that
     represent the same date in the French Republican calendar.
     """
-    jd1, jd2 = jdcal.gcal2jd(y, m, d)
-    return _julian_day_to_republican_ymd(jd1+jd2)
+    jd = sum(jdcal.gcal2jd(y, m, d))
+    jd = int(jd + 1) # ceil
+
+    return _julian_day_to_republican_ymd(jd)

@@ -32,5 +32,5 @@ print(rd == rd2)  # True
 ## Features
 
 - [x] Convert from French Republican to Gregorian calendar
-- [ ] Convert from Gregorian to French Republican calendar
+- [x] Convert from Gregorian to French Republican calendar
 - [ ] Parse French Republican dates (e.g. `"3 prairial, an VIII"`)
