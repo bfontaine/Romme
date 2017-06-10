@@ -29,6 +29,13 @@ class RepublicanDate:
         """
         return cls(*gregorian_to_republican(year, month, day))
 
+    @classmethod
+    def from_date(cls, d):
+        """
+        Create a ``RepublicanDate`` from the given ``datetime.date`` object.
+        """
+        return cls.from_gregorian(d.year, d.month, d.day)
+
     def __init__(self, year, month, day):
         """
         Create a new date. The day, month, and year should be given as
