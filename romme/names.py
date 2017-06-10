@@ -1,31 +1,49 @@
 # -*- coding: UTF-8 -*-
 
+import re
+from unidecode import unidecode
+
 from romme.romans import decimal_to_roman
 
+
+def sanitize_name(s):
+    s = re.sub(r"\s+", " ", s)
+    s = unidecode(s.strip().lower())
+    s = re.sub(r"[.,;']+", "", s)
+    return s
+
+class Label:
+    def __init__(self, label):
+        self.label = label
+        self.sanitized = sanitize_name(label)
+
+    def __str__(self):
+        return self.label
+
 months = (
-    "",
-    "Vendémiaire",
-    "Brumaire",
-    "Frimaire",
-    "Nivôse",
-    "Pluviôse",
-    "Ventôse",
-    "Germinal",
-    "Floréal",
-    "Prairial",
-    "Messidor",
-    "Thermidor",
-    "Fructidor",
+    Label(""),
+    Label("Vendémiaire"),
+    Label("Brumaire"),
+    Label("Frimaire"),
+    Label("Nivôse"),
+    Label("Pluviôse"),
+    Label("Ventôse"),
+    Label("Germinal"),
+    Label("Floréal"),
+    Label("Prairial"),
+    Label("Messidor"),
+    Label("Thermidor"),
+    Label("Fructidor"),
 )
 
 sans_culottides = (
-    "",
-    "de la vertue",
-    "du génie",
-    "du travail",
-    "de l'opinion",
-    "des récompenses",
-    "de la révolution",
+    Label(""),
+    Label("de la vertue"),
+    Label("du génie"),
+    Label("du travail"),
+    Label("de l'opinion"),
+    Label("des récompenses"),
+    Label("de la révolution"),
 )
 
 
