@@ -38,7 +38,7 @@ months = (
 
 sans_culottides = (
     Label(""),
-    Label("de la vertue"),
+    Label("de la vertu"),
     Label("du génie"),
     Label("du travail"),
     Label("de l'opinion"),
