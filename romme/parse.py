@@ -6,10 +6,11 @@ from romme import names
 from romme.romans import roman_to_decimal
 
 # Matches variants of "1[er] fructidor [an ]iii"
-RE_STANDARD_DATE = re.compile(r"^(\d+)(?:er)? ([a-z]+) (?:an )?([xvi]+)$")
+RE_STANDARD_DATE = re.compile(r"^(\d+)(?:er)? ([a-z]+?) (?:an )?([xvi]+)$")
 
 # Matches variants of "jour {de la vertue,du genie,...} [an ]iii"
-RE_SANSCULOTTIDE_DATE = re.compile(r"^jour (d[a-z ]+) (?:an )?([xvi]+)$")
+RE_SANSCULOTTIDE_DATE = re.compile(
+        r"^(?:jour|sans[ -]?cullotide) (d[a-z ]+?) (?:an )?([xvi]+)$")
 
 def _read_standard_date(match):
     """
