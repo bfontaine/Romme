@@ -6,7 +6,7 @@ import jdcal
 # These constants as well as the calculation below are based off PHP's
 # SdnToFrench and FrenchToSdn functions in ext/calendar/french.c:
 #   https://github.com/php/php-src/blob/6053987/ext/calendar/french.c
-_DAYS_PER_4_YEARS = 1461
+_DAYS_PER_4_YEARS = 365 * 4 + 1
 _DAYS_PER_MONTH = 30
 _FRENCH_JDN_OFFSET = 2375474
 
@@ -17,23 +17,29 @@ def _republican_ymd_to_julian_day(y, m, d):
     """
     return (y * _DAYS_PER_4_YEARS) / 4 + (m-1) * _DAYS_PER_MONTH + d + _FRENCH_JDN_OFFSET
 
+# FIXME this is off for the last day of each leap year.
+#
+#
+#  3/13/6 -> JD = 1461.75 + offset -> 4/1/1
+#  4/1/1  -> JD = 1462.00 + offset -> 4/1/1
 def _julian_day_to_republican_ymd(jd):
     """
     Convert a Julian day number to a ``(year, month, day)`` tuple representing
     the date in the French Republican calendar.
     """
-    days = (jd - _FRENCH_JDN_OFFSET) * 4 - 1
+    days4 = (jd - _FRENCH_JDN_OFFSET) * 4 - 1
 
-    y = int(days / _DAYS_PER_4_YEARS)
+    y, day_of_year = divmod(days4, _DAYS_PER_4_YEARS)
 
-    day_of_year = (days % _DAYS_PER_4_YEARS) / 4
+    day_of_year /= 4
+
     m, d = divmod(day_of_year, _DAYS_PER_MONTH)
 
     # Start months and days at 1 instead of 0
-    m = int(m) + 1
-    d = int(d) + 1
+    m += 1
+    d += 1
 
-    return (y, m, d)
+    return (int(y), int(m), int(d))
 
 
 def republican_to_gregorian(y, m, d):
@@ -46,10 +52,6 @@ def republican_to_gregorian(y, m, d):
     return (y, m, d)
 
 
-# FIXME the computation seems off sometimes
-# e.g. gregorian_to_republican(1795, 3, 31) -> (3, 7, 10)
-#                                   instead of (3, 7, 11)
-# see https://fr.wikipedia.org/wiki/An_III
 def gregorian_to_republican(y, m, d):
     """
     Take a year (y>=1792), a month (1<=m<=12), and a day (1<=d<=31) that
