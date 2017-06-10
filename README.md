@@ -37,4 +37,7 @@ rd.to_date()  # gives you a datetime.date object for the 1796/09/22
 
 rd2 = RepublicanDate.from_gregorian(1796, 9, 22)
 print(rd == rd2)  # True
+
+# You can also parse from a string
+RepublicanDate.from_string("1 Vendémiaire, an I")
 ```
