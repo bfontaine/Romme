@@ -40,7 +40,7 @@ def _reduce(x):
 
 def roman_to_decimal(x):
     n = 0
-    for c in _expand(x):
+    for c in _expand(x.upper()):
         n += symbols[c]
     return n
 
