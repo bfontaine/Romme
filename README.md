@@ -16,6 +16,16 @@ another.
 
 [parisdata]: https://opendata.paris.fr/explore/dataset/voiesactuellesparis2012/information/
 
+## Features
+
+- Convert from French Republican to Gregorian calendar
+- Convert from Gregorian to French Republican calendar
+- Parse dates from strings (e.g. `"3 Prairial, an VIII"`)
+
+## Install
+
+    pip install romme
+
 ## Usage
 
 ```python
@@ -28,9 +38,3 @@ rd.to_date()  # gives you a datetime.date object for the 1796/09/22
 rd2 = RepublicanDate.from_gregorian(1796, 9, 22)
 print(rd == rd2)  # True
 ```
-
-## Features
-
-- [x] Convert from French Republican to Gregorian calendar
-- [x] Convert from Gregorian to French Republican calendar
-- [ ] Parse French Republican dates (e.g. `"3 prairial, an VIII"`)
