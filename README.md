@@ -16,6 +16,8 @@ another.
 
 [parisdata]: https://opendata.paris.fr/explore/dataset/voiesactuellesparis2012/information/
 
+[![Build Status](https://travis-ci.org/bfontaine/Romme.svg?branch=master)](https://travis-ci.org/bfontaine/Romme)
+
 ## Features
 
 - Convert from French Republican to Gregorian calendar
