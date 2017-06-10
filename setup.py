@@ -26,6 +26,10 @@ setup(
     long_description="""\
 Convert dates between the French Republican and the Gregorian calendars.
 """,
+    install_requires=[
+        'jdcal==1.3',
+        'Unidecode==0.4.20',
+    ],
     classifiers=[
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3.3',
