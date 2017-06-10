@@ -11,9 +11,17 @@ _DAYS_PER_MONTH = 30
 _FRENCH_JDN_OFFSET = 2375474
 
 def _republican_ymd_to_julian_day(y, m, d):
+    """
+    Convert a ``(year, month, day)`` tuple of the French Republican calendar
+    into a Julian day number.
+    """
     return (y * _DAYS_PER_4_YEARS) / 4 + (m-1) * _DAYS_PER_MONTH + d + _FRENCH_JDN_OFFSET
 
 def _julian_day_to_republican_ymd(jd):
+    """
+    Convert a Julian day number to a ``(year, month, day)`` tuple representing
+    the date in the French Republican calendar.
+    """
     days = (jd - _FRENCH_JDN_OFFSET) * 4 - 1
 
     y = int(days / _DAYS_PER_4_YEARS)

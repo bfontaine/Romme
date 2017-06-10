@@ -1,6 +1,6 @@
 # Romme
 
-**Romme** is a Python library to convert dates between the
+**Romme** is a Python 3 library to convert dates between the
 [French Republican calendar][rep] and the [Gregorian one][greg]. It’s named
 after [Gilbert Romme][gilbert], who developed the former.
 
