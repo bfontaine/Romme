@@ -4,6 +4,7 @@ from datetime import date
 
 from romme.conversion import republican_to_gregorian, gregorian_to_republican
 from romme.names import republican_day_string
+from romme.parse import parse_date
 
 __all__ = ["RepublicanDate"]
 
@@ -35,6 +36,16 @@ class RepublicanDate:
         Create a ``RepublicanDate`` from the given ``datetime.date`` object.
         """
         return cls.from_gregorian(d.year, d.month, d.day)
+
+    @classmethod
+    def from_string(cls, s):
+        """
+        Return a ``RepublicanDate`` from a string, or ``None`` if it can't
+        parse it.
+        """
+        ymd = parse_date(s)
+        if ymd:
+            return cls(*ymd)
 
     def __init__(self, year, month, day):
         """
