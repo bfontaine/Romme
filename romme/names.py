@@ -4,18 +4,18 @@ from romme.romans import decimal_to_roman
 
 months = (
     "",
-    "vendémiaire",
-    "brumaire",
-    "frimaire",
-    "nivôse",
-    "pluviôse",
-    "ventôse",
-    "germinal",
-    "floréal",
-    "prairial",
-    "messidor",
-    "thermidor",
-    "fructidor",
+    "Vendémiaire",
+    "Brumaire",
+    "Frimaire",
+    "Nivôse",
+    "Pluviôse",
+    "Ventôse",
+    "Germinal",
+    "Floréal",
+    "Prairial",
+    "Messidor",
+    "Thermidor",
+    "Fructidor",
 )
 
 sans_culottides = (

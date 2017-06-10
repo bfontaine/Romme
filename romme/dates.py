@@ -70,6 +70,15 @@ class RepublicanDate:
     def __str__(self):
         return republican_day_string(self.year, self.month, self.day)
 
+    def __repr__(self):
+        cls = self.__class__
+        return "<%s.%s year=%d month=%d day=%d>" % (
+            cls.__module__,
+            cls.__name__,
+            self.year,
+            self.month,
+            self.day)
+
     def _cmp(self, other):
         if isinstance(other, RepublicanDate):
             return _cmp(self._ymd, other._ymd)
